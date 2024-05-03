@@ -30,7 +30,8 @@
         }
 
         .portfolio-item,
-        .resume-item {
+        .resume-item,
+        .events-item {
             background-color: white;
             padding: 20px;
             margin-bottom: 20px;
@@ -53,6 +54,82 @@
             height: 200px; /* Maintain aspect ratio */
         }
     </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var repoUrl = "https://api.github.com/repos/ChrystianMelo/ChrystianMelo.github.io/contents/Certificados";
+
+            function generateThumbnail(pdfUrl) {
+                return new Promise((resolve, reject) => {
+                    // Cria um canvas para renderizar a miniatura do PDF
+                    var canvas = document.createElement('canvas');
+                    canvas.width = 50; // largura da miniatura
+                    canvas.height = 50; // altura da miniatura
+                    var context = canvas.getContext('2d');
+                    if (!context) {
+                        console.error("Canvas context not supported.");
+                        reject("Canvas context not supported.");
+                    }
+
+                    pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
+                        // Renderiza a primeira página do PDF
+                        pdf.getPage(1).then(function (page) {
+                            var viewport = page.getViewport({ scale: 0.1 }); // escala para miniatura
+                            page.render({
+                                canvasContext: context,
+                                viewport: viewport
+                            }).promise.then(function () {
+                                // Converte o canvas para uma imagem base64
+                                var thumbnailUrl = canvas.toDataURL('image/png');
+                                // Resolve a promessa com a URL base64 da miniatura
+                                resolve(thumbnailUrl);
+                            });
+                        });
+                    }).catch(function (error) {
+                        console.error("Error rendering PDF:", error);
+                        reject(error);
+                    });
+                });
+            }
+
+            $.get(repoUrl, function (data) {
+                var certificatesList = $("#certificates-list");
+                if (certificatesList.length === 0) {
+                    console.error("#certificates-list not found.");
+                    return;
+                }
+                var index = 0;
+                data.forEach(function (item) {
+                    if (item.type === "file" && item.name.toLowerCase().endsWith(".pdf")) {
+                        var downloadUrl = item.download_url;
+                        var containerId = "certificate-" + index;
+                        index++;
+
+                        // Adiciona um contêiner para o certificado
+                        certificatesList.append("<div id='" + containerId + "' class='col-md-6'>");
+
+
+                        // Gera a miniatura do PDF e adiciona ao contêiner
+                        generateThumbnail(downloadUrl).then(function (thumbnailUrl) {
+                            $("#" + containerId).append(
+                                "<div class='events-item'>" +
+                                "<img src='" + thumbnailUrl + "' class='card-img-top fixed-img' alt='Event 2 Preview'>" +
+                                "<h5>" + item.name.replace(/\.[^/.]+$/, '') + "</h5>" +
+                                "<a href='" + downloadUrl + "' class='btn btn-primary' download>Download Certificate</a></div>");
+                        }).catch(function (error) {
+                            console.error("Error generating thumbnail:", error);
+                        });
+
+                        certificatesList.append("</div>");
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -202,30 +279,7 @@
         <section class="white-section">
             <div class="container">
                 <h2>Events</h2><br>
-                <div class="row">
-                    <!-- Event 1 -->
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <img src="https://ciia-saude.medicina.ufmg.br/assets/images/logo-ciia-header.webp" class="card-img-top fixed-img" alt="preview">
-                            <div class="card-body">
-                                <h5 class="card-title">Inteligência Artificial para a Saúde</h5>
-                                <a href="Certificados/InteligenciaArtificialSaude.pdf" class="btn btn-primary" download>Download Certificate</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Event 2 -->
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <img src="https://csr.ufmg.br/csr/wp-content/uploads/2016/02/logo_v5.jpg" class="card-img-top fixed-img" alt="Event 2 Preview">
-                            <div class="card-body">
-                                <h5 class="card-title">Webinar: Viabilidade em Foco</h5>
-                                <a href="Certificados/ViabilidadeEmFoco.pdf" class="btn btn-primary" download>Download Certificate</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Add more events -->
+                <div class="row" id="certificates-list">
                 </div>
             </div>
         </section>
