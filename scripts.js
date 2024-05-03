@@ -1,3 +1,4 @@
+// Função para buscar os documentos da pasta de certificados do GitHub
 $(document).ready(function () {
     var repoUrl = "https://api.github.com/repos/ChrystianMelo/ChrystianMelo.github.io/contents/Certificados";
 
@@ -66,4 +67,30 @@ $(document).ready(function () {
             }
         });
     });
+});
+
+// Função para buscar os repositórios em destaque do GitHub
+$(document).ready(function () {
+    const url = `https://api.github.com/users/chrystianmelo/repos`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(starredRepos => {
+            const portfolioItems = document.getElementById('portfolio-items');
+            portfolioItems.innerHTML = ''; // Limpa qualquer conteúdo existente
+
+            starredRepos.forEach(repo => {
+                const repoItem = `
+                            <div class="col-md-6">
+                                <div class="portfolio-item">
+                                    <h3>${repo.name}</h3>
+                                    <p>${repo.description}</p>
+                                    <p><a href="${repo.html_url}">${repo.html_url}</a></p>
+                                </div>
+                            </div>
+                        `;
+                portfolioItems.innerHTML += repoItem; // Adiciona o item do repositório ao DOM
+            });
+        })
+        .catch(error => console.error('Erro ao buscar repositórios:', error));
 });
