@@ -5,131 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chrystian Melo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <style>
-        .main-nav {
-            background-color: black;
-        }
-
-        .text {
-            color: white;
-        }
-
-        .content-container {
-            padding-top: 120px;
-            text-align: center;
-        }
-
-        .neutral-section {
-            background-color: #f5f5f5;
-            padding: 40px 0;
-        }
-
-        .white-section {
-            background-color: white;
-            padding: 40px 0;
-        }
-
-        .portfolio-item,
-        .resume-item,
-        .events-item {
-            background-color: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        ul {
-            list-style-type: none; /* Remove default bullet */
-            padding: 0; /* Remove default padding */
-        }
-
-        li {
-            padding-left: 1em; /* Add some padding to simulate bullet space */
-            text-indent: -1em; /* Pull text back to its original position */
-        }
-
-        .fixed-img {
-            width: 100%; /* Adjust the width as needed */
-            height: 200px; /* Maintain aspect ratio */
-        }
-    </style>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            var repoUrl = "https://api.github.com/repos/ChrystianMelo/ChrystianMelo.github.io/contents/Certificados";
-
-            function generateThumbnail(pdfUrl) {
-                return new Promise((resolve, reject) => {
-                    // Cria um canvas para renderizar a miniatura do PDF
-                    var canvas = document.createElement('canvas');
-                    canvas.width = 50; // largura da miniatura
-                    canvas.height = 50; // altura da miniatura
-                    var context = canvas.getContext('2d');
-                    if (!context) {
-                        console.error("Canvas context not supported.");
-                        reject("Canvas context not supported.");
-                    }
-
-                    pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
-                        // Renderiza a primeira página do PDF
-                        pdf.getPage(1).then(function (page) {
-                            var viewport = page.getViewport({ scale: 0.1 }); // escala para miniatura
-                            page.render({
-                                canvasContext: context,
-                                viewport: viewport
-                            }).promise.then(function () {
-                                // Converte o canvas para uma imagem base64
-                                var thumbnailUrl = canvas.toDataURL('image/png');
-                                // Resolve a promessa com a URL base64 da miniatura
-                                resolve(thumbnailUrl);
-                            });
-                        });
-                    }).catch(function (error) {
-                        console.error("Error rendering PDF:", error);
-                        reject(error);
-                    });
-                });
-            }
-
-            $.get(repoUrl, function (data) {
-                var certificatesList = $("#certificates-list");
-                if (certificatesList.length === 0) {
-                    console.error("#certificates-list not found.");
-                    return;
-                }
-                var index = 0;
-                data.forEach(function (item) {
-                    if (item.type === "file" && item.name.toLowerCase().endsWith(".pdf")) {
-                        var downloadUrl = item.download_url;
-                        var containerId = "certificate-" + index;
-                        index++;
-
-                        // Adiciona um contêiner para o certificado
-                        certificatesList.append("<div id='" + containerId + "' class='col-md-6'>");
-
-
-                        // Gera a miniatura do PDF e adiciona ao contêiner
-                        generateThumbnail(downloadUrl).then(function (thumbnailUrl) {
-                            $("#" + containerId).append(
-                                "<div class='events-item'>" +
-                                "<img src='" + thumbnailUrl + "' class='card-img-top fixed-img' alt='Event 2 Preview'>" +
-                                "<h5>" + item.name.replace(/\.[^/.]+$/, '') + "</h5>" +
-                                "<a href='" + downloadUrl + "' class='btn btn-primary' download>Download Certificate</a></div>");
-                        }).catch(function (error) {
-                            console.error("Error generating thumbnail:", error);
-                        });
-
-                        certificatesList.append("</div>");
-                    }
-                });
-            });
-        });
-    </script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -293,5 +169,10 @@
             </div>
         </section>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.min.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>

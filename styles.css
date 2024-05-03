@@ -1,0 +1,47 @@
+.main-nav {
+    background-color: black;
+}
+
+.text {
+    color: white;
+}
+
+.content-container {
+    padding-top: 120px;
+    text-align: center;
+}
+
+.neutral-section {
+    background-color: #f5f5f5;
+    padding: 40px 0;
+}
+
+.white-section {
+    background-color: white;
+    padding: 40px 0;
+}
+
+.portfolio-item,
+.resume-item,
+.events-item {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ul {
+    list-style-type: none; /* Remove default bullet */
+    padding: 0; /* Remove default padding */
+}
+
+li {
+    padding-left: 1em; /* Add some padding to simulate bullet space */
+    text-indent: -1em; /* Pull text back to its original position */
+}
+
+.fixed-img {
+    width: 100%; /* Adjust the width as needed */
+    height: 200px; /* Maintain aspect ratio */
+}
