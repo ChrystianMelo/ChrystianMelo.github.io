@@ -6,6 +6,30 @@
     <title>Chrystian Melo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .download-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .download-box {
+            max-width: 600px;
+        }
+
+        .download-btn {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 
@@ -33,84 +57,18 @@
         </div>
     </nav>
 
-    <div id="resume" class="content-container">
-        <section class="neutral-section">
-            <div class="container">
-                <h2>Academic Experiences</h2>
-                <br />
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="resume-item">
-                            <h3>B.Sc. Computational Mathematics</h3>
-                            <p>Universidade Federal de Minas Gerais</p>
-                            <p>03/2020 - Present</p>
-                            <ul>
-                                <li>Algebra</li>
-                                <li>Computer Logic</li>
-                                <li>Graph Theory</li>
-                                <li>Algorithms</li>
-                                <!-- ... (other subjects) ... -->
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="resume-item">
-                            <h3>Technical in System Development</h3>
-                            <p>Universidade Federal de Minas Gerais</p>
-                            <p>02/2016 - 12/2019</p>
-                            <ul>
-                                <li>Logical Systems</li>
-                                <li>Systems Organization and Connectivity</li>
-                                <li>Algorithms and Data Structure</li>
-                                <li>Programming Technologies</li>
-                                <!-- ... (other subjects) ... -->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+    <main class="download-section">
+        <div class="download-box">
+            <h2>Resume</h2>
+            <p>Click the button below to download my resume in PDF format.</p>
+            <a 
+                href="https://www.overleaf.com/download/project/69c12e451330ba46caeb1508/build/19d1ae11817-c7def4f1048eb391/output/output.pdf?compileGroup=standard&clsiserverid=clsi-pre-emp-c3d-c-f-wqg9&enable_pdf_caching=true&popupDownload=true&editorId=0a134ea8-9cba-4095-b5d4-0b367d2056ef"
+                download="ChrystianMelo_CV.pdf"
+                class="btn btn-primary btn-lg">
+                Download PDF
+            </a>
+        </div>
+    </main>
 
-                <br />
-                <hr />
-                <h2>Professional Experiences</h2>
-                <br />
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="resume-item">
-                            <h3>Research Software Engineer</h3>
-                            <p>Centro de Sensoriamento Remoto - UFMG</p>
-                            <p>09/2020 - Present</p>
-                            <ul>
-                                <li>Environmental Modeling</li>
-                                <li>Modern C++</li>
-                                <li>Parallelism</li>
-                                <li>Memory Management</li>
-                                <!-- ... (other skills and responsibilities) ... -->
-                            </ul>
-
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="resume-item">
-                            <h3>Research Software Engineer Intern</h3>
-                            <p>Pattern Recognition and Earth Observation - UFMG</p>
-                            <p>02/2019 - 07/2019</p>
-                            <ul>
-                                <li>Python</li>
-                                <li>Grafana</li>
-                                <li>Elasticsearch</li>
-                                <li>Docker</li>
-                                <!-- ... (other skills and responsibilities) ... -->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.min.js"></script>
-    <script src="scripts.js"></script>
 </body>
 </html>
