@@ -1,4 +1,4 @@
-// Função para buscar os documentos da pasta de certificados do GitHub
+// FunÃ§Ã£o para buscar os documentos da pasta de certificados do GitHub
 $(document).ready(function () {
     var repoUrl = "https://api.github.com/repos/ChrystianMelo/ChrystianMelo.github.io/contents/Certificados";
 
@@ -15,7 +15,7 @@ $(document).ready(function () {
             }
 
             pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
-                // Renderiza a primeira página do PDF
+                // Renderiza a primeira pÃ¡gina do PDF
                 pdf.getPage(1).then(function (page) {
                     var viewport = page.getViewport({ scale: 0.1 }); // escala para miniatura
                     page.render({
@@ -48,11 +48,11 @@ $(document).ready(function () {
                 var containerId = "certificate-" + index;
                 index++;
 
-                // Adiciona um contêiner para o certificado
+                // Adiciona um contÃªiner para o certificado
                 certificatesList.append("<div id='" + containerId + "' class='col-md-6'>");
 
 
-                // Gera a miniatura do PDF e adiciona ao contêiner
+                // Gera a miniatura do PDF e adiciona ao contÃªiner
                 generateThumbnail(downloadUrl).then(function (thumbnailUrl) {
                     $("#" + containerId).append(
                         "<div class='events-item'>" +
@@ -69,15 +69,15 @@ $(document).ready(function () {
     });
 });
 
-// Função para buscar os repositórios em destaque do GitHub
+// FunÃ§Ã£o para buscar os repositÃ³rios do GitHub
 $(document).ready(function () {
-    const url = `https://api.github.com/users/chrystianmelo/repos`;
+    const url = `https://api.github.com/users/chrystianmelo/repos?per_page=100`;
 
     fetch(url)
         .then(response => response.json())
         .then(starredRepos => {
             const portfolioItems = document.getElementById('portfolio-items');
-            portfolioItems.innerHTML = ''; // Limpa qualquer conteúdo existente
+            portfolioItems.innerHTML = ''; // Limpa qualquer conteÃºdo existente
 
             starredRepos.forEach(repo => {
                 const repoItem = `
@@ -89,8 +89,8 @@ $(document).ready(function () {
                                 </div>
                             </div>
                         `;
-                portfolioItems.innerHTML += repoItem; // Adiciona o item do repositório ao DOM
+                portfolioItems.innerHTML += repoItem; // Adiciona o item do repositÃ³rio ao DOM
             });
         })
-        .catch(error => console.error('Erro ao buscar repositórios:', error));
+        .catch(error => console.error('Erro ao buscar repositÃ³rios:', error));
 });
