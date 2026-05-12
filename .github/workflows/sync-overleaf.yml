@@ -1,0 +1,46 @@
+name: Sync Overleaf Resume
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout GitHub repo
+        uses: actions/checkout@v4
+
+      - name: Pull from Overleaf
+        run: |
+          rm -rf overleaf-src
+          git clone https://git:${{ secrets.OVERLEAF_TOKEN }}@git.overleaf.com/69c12e451330ba46caeb1508 overleaf-src
+
+          rsync -av --delete \
+            --exclude='.git' \
+            --exclude='.github' \
+            overleaf-src/ ./
+
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+
+      - name: Move PDF
+        run: |
+          mkdir -p public
+          cp main.pdf public/curriculo.pdf
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add .
+          git commit -m "Update resume from Overleaf" || echo "No changes"
+          git push
