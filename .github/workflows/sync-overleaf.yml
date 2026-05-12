@@ -19,8 +19,14 @@ jobs:
       - name: Pull from Overleaf
         run: |
           rm -rf overleaf-src
-          git clone https://git:${{ secrets.OVERLEAF_TOKEN }}@git.overleaf.com/69c12e451330ba46caeb1508 overleaf-src
 
+          echo "Testing connection..."
+
+          git clone https://oauth2:${{ secrets.OVERLEAF_TOKEN }}@git.overleaf.com/69c12e451330ba46caeb1508 overleaf-src
+
+          echo "Clone finished"
+
+          ls -la overleaf-src
           rsync -av --delete \
             --exclude='.git' \
             --exclude='.github' \
