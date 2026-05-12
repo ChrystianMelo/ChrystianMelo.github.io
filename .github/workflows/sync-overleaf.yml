@@ -17,21 +17,29 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Pull from Overleaf
+        env:
+          OVERLEAF_TOKEN: ${{ secrets.OVERLEAF_TOKEN }}
         run: |
           rm -rf overleaf-src
 
-          echo "Testing connection..."
+          cat > askpass.sh << 'EOF'
+          #!/bin/sh
+          case "$1" in
+            *Username*) echo "git" ;;
+            *Password*) echo "$OVERLEAF_TOKEN" ;;
+          esac
+          EOF
 
-          git clone https://git:${{ secrets.OVERLEAF_TOKEN }}@git.overleaf.com/69c12e451330ba46caeb1508 overleaf-src
+          chmod +x askpass.sh
+          export GIT_ASKPASS="$PWD/askpass.sh"
+          export GIT_TERMINAL_PROMPT=0
 
-          echo "Clone finished"
+          git clone https://git@git.overleaf.com/69c12e451330ba46caeb1508 overleaf-src
 
-          ls -la overleaf-src
           rsync -av --delete \
             --exclude='.git' \
             --exclude='.github' \
             overleaf-src/ ./
-
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v3
         with:
