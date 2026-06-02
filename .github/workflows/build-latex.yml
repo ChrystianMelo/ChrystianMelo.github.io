@@ -20,7 +20,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: curriculo.tex
+          root_file: curriculum.tex
           working_directory: documents
 
       - name: Commit generated PDF
