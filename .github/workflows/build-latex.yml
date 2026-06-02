@@ -1,0 +1,30 @@
+name: Build LaTeX PDFs
+
+on:
+  push:
+    paths:
+      - "documents/**/*.tex"
+      - ".github/workflows/build-latex.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build-latex:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: curriculo.tex
+          working_directory: documents
+
+      - name: Commit generated PDF
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Generate PDF from LaTeX"
+          file_pattern: "documents/*.pdf"
