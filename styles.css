@@ -27,6 +27,7 @@ html {
 
 body {
   margin: 0;
+  padding-top: var(--header-height);
   overflow-x: hidden;
   background: var(--navy);
   color: var(--light-slate);
@@ -88,8 +89,10 @@ button:focus-visible {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 10;
   background: rgba(10, 25, 47, 0.94);
   box-shadow: 0 2px 12px var(--navy-shadow);
