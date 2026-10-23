@@ -1,69 +1,220 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chrystian Melo</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Portfolio of Chrystian Melo, a Research Software Engineer specializing in scientific and geospatial systems.">
+  <meta name="theme-color" content="#0a192f">
+  <meta property="og:title" content="Chrystian Melo | Research Software Engineer">
+  <meta property="og:description" content="Scientific software, geospatial systems, and high-performance computing.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chrystianmelo.github.io/">
+  <title>Chrystian Melo | Research Software Engineer</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <nav class="navbar navbar-expand-md fixed-top navbar-dark navbar-trans main-nav">
-        <div class="container">
-            <ul class="nav navbar-nav mx-auto">
-                <li class="nav-item nav-link"><h1 class="text">CM.</h1></li>
-            </ul>
-            <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="portfolio.html">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="events.html">Events</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Chrystian Melo, home"><img src="favicon.svg" alt=""></a>
+
+      <button class="menu-toggle" type="button" aria-controls="primary-menu" aria-expanded="false">
+        <span class="sr-only">Open navigation menu</span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+
+      <div class="nav-links" id="primary-menu">
+        <a href="#about"><span>01.</span> About</a>
+        <a href="#experience"><span>02.</span> Experience</a>
+        <a href="#projects"><span>03.</span> Projects</a>
+        <a href="#education"><span>04.</span> Education</a>
+        <a class="resume-link" href="documents/curriculum.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+      </div>
     </nav>
+  </header>
 
-    <div id="about" class="content-container">
-        <section class="neutral-section">
-            <div class="container">
-                <h2>Chrystian Melo</h2>
-                <h4>Software Engineer | Computational Mathematics</h4>
-                <br>
+  <main id="main-content">
+    <section class="hero container" id="top" aria-labelledby="hero-title">
+      <p class="eyebrow">Hi, my name is</p>
+      <h1 id="hero-title">Chrystian Melo.</h1>
+      <p class="hero-heading">I build purposeful software.</p>
+      <p class="hero-specialties">Software Engineering · C++ · Python · Scientific Computing</p>
+      <p class="hero-copy">I'm a Software Engineer with a background in Computational Mathematics and experience
+        building complex, reliable software. I work across C++, Python, scientific computing and software
+        architecture, turning challenging technical problems into efficient, maintainable solutions.</p>
+      <a class="button" href="#projects">Explore my work</a>
+    </section>
 
-                <div class="d-flex justify-content-center mb-4">
-                    <a href="https://www.linkedin.com/in/chrystianmelo/" class="btn btn-outline-dark mx-2 d-flex align-items-center" target="_blank">
-                        <i class="fab fa-linkedin"></i> LinkedIn
-                    </a>
-                    <a href="/documents/curriculum.pdf" class="btn btn-outline-dark mx-2 d-flex align-items-center" target="_blank">
-                        <i class="fas fa-id-card"></i> CV
-                    </a>
-                    <a href="https://github.com/chrystianmelo" class="btn btn-outline-dark mx-2 d-flex align-items-center" target="_blank">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                    <a href="mailto:ochrystianmelo@gmail.com" class="btn btn-outline-dark mx-2 d-flex align-items-center" target="_blank">
-                        <i class="fas fa-envelope"></i> E-mail
-                    </a>
-                </div>
-                <br>
-                <hr />
-                <h4>About</h4>
-                <p>I am a passionate and dedicated technology professional with a robust background in computational mathematics and software development. My career journey includes significant roles such as a Research Software Engineer at the Centro de Sensoriamento Remoto, where I enhance and maintain the Dinamica EGO software for modeling and simulating natural phenomena using C++ and Java. Additionally, my experience as an Undergraduate Student Researcher at the Pattern Recognition and Earth Observation Laboratory involved developing Python utilities for scientific visualization and machine performance monitoring. My academic achievements include a Bachelor of Science in Computational Mathematics from UFMG, where I honed my skills in mathematical modeling, simulation, and algorithm development, as well as a Technical Degree in System Development from COLTEC - UFMG. Driven by curiosity and a commitment to innovation, I aim to contribute to impactful projects in the tech industry.</p>
+    <section class="section container" id="about" aria-labelledby="about-title">
+      <div>
+        <h2 class="section-title" id="about-title"><span>01.</span> About me</h2>
+        <div class="body-copy">
+          <p>I'm a software engineer with a background in Computational Mathematics, combining mathematical reasoning
+            with hands-on experience building complex software systems.</p>
+          <p>My work has focused on scientific software development, from designing and maintaining C++ components to
+            building simulation workflows, processing geospatial data and improving software reliability and
+            performance.</p>
+          <p>I enjoy solving challenging problems, understanding systems from the ground up and transforming complex
+            requirements into clean, efficient and maintainable software.</p>
+        </div>
+        <p class="intro-label">Technologies and expertise:</p>
+        <div class="skills-groups">
+          <section class="skills-group" aria-labelledby="technologies-title">
+            <h3 id="technologies-title">Technologies</h3>
+            <ul class="skills-list">
+              <li>C++, Python, Java</li>
+              <li>CMake, Git, Linux</li>
+              <li>GDAL, GEOS, PROJ</li>
+            </ul>
+          </section>
+          <section class="skills-group" aria-labelledby="expertise-title">
+            <h3 id="expertise-title">Expertise</h3>
+            <ul class="skills-list">
+              <li>Software architecture</li>
+              <li>Scientific computing</li>
+              <li>Numerical algorithms</li>
+              <li>Geospatial processing</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </section>
 
+    <section class="section container narrow" id="experience" aria-labelledby="experience-title">
+      <h2 class="section-title" id="experience-title"><span>02.</span> Where I have worked</h2>
 
-            </div>
-        </section>
+      <article class="experience-card">
+        <h3 class="role">Research Software Engineer <span>@ <a href="https://csr.ufmg.br/" target="_blank"
+              rel="noopener noreferrer">Centro de Sensoriamento Remoto (CSR), UFMG</a></span></h3>
+        <p class="experience-date"><time datetime="2020">2020</time>&ndash;<time datetime="2026">2026</time></p>
+        <p class="muted">Scientific and geospatial systems for environmental and climate research</p>
+        <p class="experience-stack">C++ · Java · CMake · GDAL · Linux · Git</p>
+        <ul class="detail-list">
+          <li>Developed and optimized core components of Dinamica EGO, a high-performance geospatial modeling platform.
+          </li>
+          <li>Built C++ pipelines for large-scale raster processing, including cropping, resampling and reconstruction.
+          </li>
+          <li>Engineered shared-memory interprocess communication to reduce latency and improve throughput.</li>
+          <li>Implemented spatial algorithms, improved numerical robustness and contributed unit tests across the
+            codebase.</li>
+        </ul>
+      </article>
+
+      <article class="experience-card">
+        <h3 class="role">Undergraduate Student Researcher <span>@ <a
+              href="https://dcc.ufmg.br/pattern-recognition-and-earth-observation/" target="_blank"
+              rel="noopener noreferrer">PATREO, UFMG</a></span></h3>
+        <p class="experience-date"><time datetime="2019">2019</time></p>
+        <p class="muted">Scientific visualization and computing-systems monitoring</p>
+        <p class="experience-stack">Python · NumPy · SciPy · Matplotlib</p>
+        <ul class="detail-list">
+          <li>Developed Python-based tools for scientific visualization and computing-system performance monitoring,
+            leveraging NumPy, SciPy and Matplotlib.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section container" id="projects" aria-labelledby="projects-title">
+      <h2 class="section-title" id="projects-title"><span>03.</span> Selected projects</h2>
+      <p class="section-intro">Selected work. For more projects, visit my <a href="https://github.com/chrystianmelo"
+          target="_blank" rel="noopener noreferrer">GitHub profile</a>.</p>
+      <div class="project-grid">
+        <article class="project-card">
+          <p class="repo-type">Python · Algorithms · Geospatial</p>
+          <h3>DeliveryDispatch</h3>
+          <p>Geospatial dispatch system using Geohash indexing and a compressed Trie to identify nearby couriers.</p>
+          <ul class="project-tags" aria-label="Project skills">
+            <li>Geohash</li>
+            <li>Compressed Trie</li>
+            <li>Spatial search</li>
+          </ul>
+          <a href="https://github.com/ChrystianMelo/DeliveryDispatch" target="_blank" rel="noopener noreferrer"
+            aria-label="View DeliveryDispatch repository on GitHub">View repository</a>
+        </article>
+        <article class="project-card">
+          <p class="repo-type">Python · Numerical Computing</p>
+          <h3>RemoteSensingPCA</h3>
+          <p>Landsat 9 image processing with PCA based on linear algebra and K-Means classification.</p>
+          <ul class="project-tags" aria-label="Project skills">
+            <li>PCA</li>
+            <li>Linear algebra</li>
+            <li>K-Means</li>
+          </ul>
+          <a href="https://github.com/ChrystianMelo/RemoteSensingPCA" target="_blank" rel="noopener noreferrer"
+            aria-label="View RemoteSensingPCA repository on GitHub">View repository</a>
+        </article>
+        <article class="project-card">
+          <p class="repo-type">C++ · Graph Algorithms</p>
+          <h3>Metalmax</h3>
+          <p>An electrical network analysis system built in C++, using graph algorithms and maximum-flow techniques to
+            evaluate network capacity, identify critical connections and detect unmet energy demand.</p>
+          <ul class="project-tags" aria-label="Project skills">
+            <li>Edmonds-Karp</li>
+            <li>Maximum flow</li>
+            <li>Bottleneck analysis</li>
+          </ul>
+          <a href="https://github.com/ChrystianMelo/Metalmax" target="_blank" rel="noopener noreferrer"
+            aria-label="View Metalmax repository on GitHub">View repository</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container two-column credentials" id="education" aria-labelledby="education-title">
+      <div>
+        <h2 class="section-title" id="education-title"><span>04.</span> Education</h2>
+        <article class="education-item">
+          <h3>BSc in Computational Mathematics</h3>
+          <p><a href="https://www.ufmg.br/" target="_blank" rel="noopener noreferrer">Universidade Federal de Minas
+              Gerais &mdash; UFMG</a><br><span class="education-date">2020&ndash;2026</span><br>Algorithms, numerical
+            methods, dynamical systems, and
+            geo-environmental modeling.</p>
+        </article>
+        <article class="education-item">
+          <h3>Technical Diploma in Systems Development</h3>
+          <p><a href="https://www.coltec.ufmg.br/" target="_blank" rel="noopener noreferrer">COLTEC &mdash;
+              UFMG</a><br><span class="education-date">2016&ndash;2019</span><br>Algorithms, data structures,
+            and software development.</p>
+        </article>
+      </div>
+      <div>
+        <h2 class="section-title compact"><span>+</span> Certifications</h2>
+        <p>Additional training in data science, artificial intelligence and computational modeling.
+        </p>
+        <a class="text-link" href="events.html">View certificates <span aria-hidden="true">-&gt;</span></a>
+      </div>
+    </section>
+
+    <section class="contact container" id="contact" aria-labelledby="contact-title">
+      <p class="eyebrow">05. What is next?</p>
+      <h2 id="contact-title">Let's talk.</h2>
+      <p>I am open to opportunities and conversations involving software engineering, scientific computing,
+        high-performance systems and complex technical challenges.
+      </p>
+      <a class="button" href="mailto:ochrystianmelo@gmail.com">Send an email</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="social-links">
+      <a href="https://github.com/chrystianmelo" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/chrystianmelo/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </div>
+    <p>Designed and built by Chrystian Melo <span id="year"></span></p>
+  </footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.min.js"></script>
-    <script src="scripts.js"></script>
+  <script src="scripts.js"></script>
 </body>
+
 </html>
