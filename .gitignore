@@ -1,0 +1,8 @@
+# Ignora tudo dentro de documents
+/documents/**
+
+# Permite percorrer subpastas
+!/documents/**/
+
+# Mantém todos os arquivos .tex, inclusive em subpastas
+!/documents/**/*.tex
