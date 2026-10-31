@@ -1,30 +1,115 @@
-name: Build LaTeX PDFs
+name: Build and release LaTeX PDFs
 
 on:
   push:
     paths:
-      - "documents/**/*.tex"
+      - "documents/**"
       - ".github/workflows/build-latex.yml"
+  pull_request:
+    paths:
+      - "documents/**"
+      - ".github/workflows/build-latex.yml"
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  build-latex:
+  discover-documents:
     runs-on: ubuntu-latest
-
+    outputs:
+      documents: ${{ steps.matrix.outputs.documents }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v3
+      - name: Find LaTeX documents
+        id: matrix
+        shell: python
+        run: |
+          import json
+          import os
+          from pathlib import Path
+
+          root = Path("documents")
+          documents = [
+              {
+                  "tex": path.relative_to(root).as_posix(),
+                  "pdf": path.with_suffix(".pdf").relative_to(root).as_posix(),
+              }
+              for path in sorted(root.rglob("*.tex"))
+          ]
+
+          if not documents:
+              raise SystemExit("No .tex files found in documents/")
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              print(f"documents={json.dumps(documents)}", file=output)
+
+  build-documents:
+    needs: discover-documents
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(needs.discover-documents.outputs.documents) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile ${{ matrix.tex }}
+        uses: xu-cheng/latex-action@v4
         with:
-          root_file: curriculum.tex
+          root_file: ${{ matrix.tex }}
           working_directory: documents
 
-      - name: Commit generated PDF
-        uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Upload ${{ matrix.pdf }}
+        uses: actions/upload-artifact@v4
         with:
-          commit_message: "Generate PDF from LaTeX"
-          file_pattern: "documents/*.pdf"
+          name: latex-pdf-${{ strategy.job-index }}
+          path: documents/${{ matrix.pdf }}
+          if-no-files-found: error
+          retention-days: 30
+
+  publish-documents:
+    needs: build-documents
+    if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: publish-latex-documents
+      cancel-in-progress: false
+    steps:
+      - name: Download compiled PDFs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: latex-pdf-*
+          path: release
+          merge-multiple: true
+
+      - name: Publish documents release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_COMMIT: ${{ github.sha }}
+          RELEASE_TAG: documents
+        shell: bash
+        run: |
+          mapfile -d '' pdfs < <(find release -type f -name '*.pdf' -print0)
+
+          if (( ${#pdfs[@]} == 0 )); then
+            echo "No compiled PDFs were downloaded."
+            exit 1
+          fi
+
+          if gh release view "$RELEASE_TAG" > /dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" "${pdfs[@]}" --clobber
+          else
+            gh release create "$RELEASE_TAG" "${pdfs[@]}" \
+              --target "$RELEASE_COMMIT" \
+              --title "Documents (PDF)" \
+              --notes "PDFs generated automatically from the LaTeX files in documents/." \
+              --latest=false
+          fi
