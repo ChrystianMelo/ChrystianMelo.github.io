@@ -1,0 +1,111 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[margin=0.5in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+
+\setlist[itemize]{
+    leftmargin=1.3em,
+    labelsep=0.4em,
+    itemsep=1.5pt,
+    parsep=0pt,
+    partopsep=0pt,
+    topsep=2.5pt
+}
+\titleformat{\section}{\normalsize\bfseries}{}{0em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{0.9em}{0.4em}
+
+\linespread{1.02}
+
+\pagestyle{empty}
+
+\begin{document}
+
+{\centering
+    {\Large\textbf{Chrystian Melo}}\par\vspace{0.1em}
+    \textbf{Software Engineer $\vert$ C++ $\vert$ Python $\vert$ Scientific Computing}\par\vspace{0.1em}
+    \href{mailto:ochrystianmelo@gmail.com}{ochrystianmelo@gmail.com} $\vert$
+    \href{https://www.linkedin.com/in/chrystianmelo/}{LinkedIn} $\vert$
+    \href{https://github.com/ChrystianMelo}{GitHub} $\vert$
+    \href{https://chrystianmelo.github.io/}{Portfolio}\par
+}
+\vspace{0.25em}
+
+\section*{Professional Summary}
+
+Software Engineer with 6+ years of experience developing and improving complex C++ and Java systems, including core components of \href{https://www.dinamicaego.com/}{Dinamica EGO}, an internationally used geospatial modeling platform. Experienced in software architecture, concurrency, memory management, debugging and performance optimization. Strong foundation in computer science and applied mathematics, with practical experience in scientific computing and geospatial applications.
+
+\section{Core Skills}
+
+\noindent
+\textbf{Programming \& Tools:} C++, Python, Java, CMake, Git, Linux, GDAL
+
+\noindent
+\textbf{Computer Science:} Algorithms \& Data Structures, Computational Complexity, Numerical Methods, Linear Algebra
+
+\noindent
+\textbf{Software \& Systems:} Software Design, Memory Management, Concurrency, Profiling \& Optimization, Testing, CI/CD
+
+\noindent
+\textbf{Scientific \& Geospatial:} Scientific Computing, Optimization, GIS, Remote Sensing, Raster/Vector Processing
+
+\noindent
+\textbf{Languages:} Portuguese (Native), English (Fluent), Spanish (Intermediate)
+
+\section*{Experience}
+
+\noindent\textbf{Research Software Engineer} (\href{https://csr.ufmg.br/}{CSR - UFMG}) \hfill 2020 -- 2026
+
+\begin{itemize}
+    \item Developed and optimized core components of \href{https://www.dinamicaego.com/}{\textbf{Dinamica EGO}}, a high-performance geospatial modeling platform cited in more than 400 scientific publications covering study areas across 90 countries.
+    
+    \item Implemented \textbf{scientific algorithms for spatial analysis}, including equal-area grid cell computation based on published GIS methods, correcting geographic area-estimation distortions exceeding \textbf{50\% at higher latitudes}. \href{https://github.com/ChrystianMelo/ChrystianMelo.github.io/releases/download/documents/calcareas-asphaa.pdf}{\,\faExternalLink*}
+
+    \item Designed and extended \textbf{raster processing systems} in C++ (cropping, resampling, map reconstruction), enabling scalable processing of large geospatial datasets.
+    
+    \item Implemented \textbf{shared-memory interprocess communication} in C++, handling synchronization and concurrent access to enable communication between application instances.
+        
+    \item Refactored the \textbf{debugging subsystem}, redesigning execution monitoring and synchronization mechanisms to improve reliability and maintainability.
+        
+    \item Improved \textbf{numerical robustness} of geospatial models (e.g., spatial transformations and transition computations).
+        
+    \item Enhanced \textbf{UI/UX tools (Java)} for large dataset interaction, improving usability of data editors and visualization workflows.
+\end{itemize}
+
+\noindent\textbf{Undergraduate Researcher} (Technical Internship) (\href{https://dcc.ufmg.br/pattern-recognition-and-earth-observation/}{PATREO - UFMG}) \hfill 2019 -- 2019
+\begin{itemize}
+    \item Developed Python tools for scientific data visualization and computing-system performance monitoring using NumPy, SciPy and Matplotlib.
+    \item Collaborated with undergraduate and graduate researchers in a computer science research laboratory, gaining experience with scientific software development and technical discussions in English.
+\end{itemize}
+
+\section*{Education}
+\noindent\textbf{B.Sc. in Computational Mathematics} (\href{https://www.matcomp.dcc.ufmg.br/}{UFMG}) \hfill 2020 -- 2026
+\begin{itemize}
+    \item Focus: Mathematical modeling, Numerical Methods, Linear Algebra, Optimization and Scientific Computing
+    \item Geo-Environmental Modeling: GIS, Remote Sensing, Spatial Analysis
+\end{itemize}
+
+\noindent\textbf{Technical Degree in Systems Development} (\href{https://www.coltec.ufmg.br/}{UFMG}) \hfill 2016 -- 2019
+\begin{itemize}
+    \item Focus: Algorithms, Data Structures, Software Development
+\end{itemize}
+
+\section*{Projects}
+
+\noindent\href{https://github.com/ChrystianMelo/DeliveryDispatch}{\faGithub}\,\textbf{DeliveryDispatch}\par
+\begin{itemize}
+    \item Built a Python geospatial dispatch system using Geohash, compressed Tries, Haversine filtering and OpenStreetMap data, with an interactive Dash interface and automated tests.
+\end{itemize}
+
+\noindent\href{https://github.com/ChrystianMelo/RemoteSensingPCA}{\faGithub}\,\textbf{RemoteSensingPCA}\par
+\begin{itemize}
+    \item Implemented a custom PCA/SVD pipeline for Landsat 9 imagery, reducing eight spectral bands to four principal components and applying K-Means clustering.
+\end{itemize}
+
+\noindent\href{https://github.com/ChrystianMelo/Metalmax}{\faGithub}\,\textbf{Metalmax}\par
+\begin{itemize}
+    \item Developed a C++ graph analysis tool using Edmonds--Karp maximum flow to identify network bottlenecks, unmet energy demand and transmission losses.
+\end{itemize}
+\end{document}
